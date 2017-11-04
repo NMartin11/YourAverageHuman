@@ -71,6 +71,7 @@ share
 ssl
 bin
 conda-meta
+/Website/static
 
 # Flask stuff:
 instance/
