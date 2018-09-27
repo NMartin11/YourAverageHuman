@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    url(r'', views.index, name='photo_gallery'),
+    url(r'', views.index, name='index'),
 ]
+

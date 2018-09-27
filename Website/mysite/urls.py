@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static 
 from django.contrib import admin
+from django.conf import settings
 
 
 admin.autodiscover()
@@ -24,3 +26,7 @@ urlpatterns = [
     url(r'blog/', include('blog.urls')),
     url(r'^photo_gallery/', include('photo_gallery.urls', namespace='photo_gallery'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
