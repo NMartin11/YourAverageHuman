@@ -30,9 +30,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-<<<<<<< HEAD
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-=======
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> e8a4e69b0deb2fe769697a46b6e165c88774a4fc
