@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block photos %}
+    <div class="container">
+        {% for photo in photos %}
+            {% if photo.image %}
+                <h1>{{photo.title}}</h1>
+                <img src='{{ photo.image.url }}' class='img-responsive' />
+            {% endif%}
+        {% endfor %}
+    </div>
+{% endblock %}
