@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 
-{% block photos %}
-    <div class="container">
-        {% for photo in photos %}
-            {% if photo.image %}
-                <h1>{{photo.title}}</h1>
-                <img src='{{ photo.image.url }}' class='img-responsive' />
-            {% endif%}
-        {% endfor %}
-    </div>
+{% block photo %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Hello, world!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            {% for photo in photos %}
+                {% if photo.image %}
+                    <div class="col-md-4">
+                        <h2>{{photo.title}}</h2>
+                        <img src='{{ photo.image.url }}' class='img-responsive' />
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
 {% endblock %}
+
