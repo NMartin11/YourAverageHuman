@@ -1,32 +1,45 @@
 {% extends 'base.html' %}
 
 {% block photo %}
-<!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
+<main role="main">
+    <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Hello, world!</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            <h1 class="display-3">Photo Gallery</h1>
+            <p>I recently took an interest in photography so this gallery is to share some of my favorite pictures that I have taken. If you like them and want to use any just contact me and we will work something out.</p>
+        </div>
+    </div>
+
+<!-- Page Content -->
+    {% comment %} <div class="container">
+
+      <h1 class="my-4 text-center text-lg-left">Thumbnail Gallery</h1>
+
+      <div class="row text-center text-lg-left">
+
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
         </div>
       </div>
 
-      <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-            {% for photo in photos %}
-                {% if photo.image %}
-                    <div class="col-md-4">
-                        <h2>{{photo.title}}</h2>
-                        <img src='{{ photo.image.url }}' class='img-responsive' />
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+    </div> {% endcomment %}
+    <!-- /.container -->
 
-        <hr>
+    <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    {% for photo in photos %}
+        {% if photo.image %}
+            <div class="col-md-4">
+                <h2>{{photo.title}}</h2>
+                <img class="img-fluid img-thumbnail" src='{{ photo.image.url }}'  />
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
 
-      </div> <!-- /container -->
-
-    </main>
+    <hr>
+</main>
 {% endblock %}
 
