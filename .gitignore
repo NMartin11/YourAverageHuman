@@ -129,3 +129,4 @@ venv.bak/
 .idea/workspace.xml
 .idea/dataSources/3e5eddb9-dc33-4e68-a0cd-f5c0e5b666ee.xml
 .idea/dataSources/3e5eddb9-dc33-4e68-a0cd-f5c0e5b666ee/storage_v2/_src_/schema/main.uQUzAA.meta
+.vscode/settings.json
