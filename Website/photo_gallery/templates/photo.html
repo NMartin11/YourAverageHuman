@@ -27,16 +27,17 @@
     <!-- /.container -->
 
     <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-    {% for photo in photos %}
-        {% if photo.image %}
-            <div class="col-md-4">
-                <h2>{{photo.title}}</h2>
-                <img class="img-fluid img-thumbnail" src='{{ photo.image.url }}'  />
-            </div>
-        {% endif %}
-    {% endfor %}
+        <!-- Example row of columns -->
+        <div class="row">
+        {% for photo in photos %}
+            {% if photo.image %}
+                <div class="col-md-4">
+                    <h2>{{photo.title}}</h2>
+                    <img class="img-fluid img-thumbnail" src='{{ photo.image.url }}'  />
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
     </div>
 
     <hr>
