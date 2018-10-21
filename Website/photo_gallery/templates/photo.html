@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load cloudinary %}
 
 {% block photo %}
 <main role="main">
@@ -23,7 +24,7 @@
     </div>
 
     <div>
-        <img src='https://res.cloudinary.com/youraveragehuman/image/upload/stage/cat.jpg' alt='Sample Image'/>
+        {% comment %} I want to put cloudinary photo here.  {% endcomment %}
     </div>
 
     <hr>

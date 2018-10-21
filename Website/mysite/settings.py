@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'photo_gallery',
     'sortedm2m',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +134,7 @@ MEDIA_URL = '/media/'
 
 CLOUDINARY = [
     {
-        # "cloud_name":config('cloud_name'),
+        "cloud_name":config('cloud_name'),
         "api_key":config('api_key'),
         "api_secret":config('api_secret'),
     }
