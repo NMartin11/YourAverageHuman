@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
+# from cloudinary.models import CloudinaryField
 from django.db import models
+
 
 # Create your models here.
 class Photo(models.Model):
@@ -14,3 +16,17 @@ class Photo(models.Model):
 
     class Meta:
         ordering = ["-timestamp"]
+
+
+# class CloudinaryPhoto(models.Model):
+#     create_time = models.DateTimeField(auto_now=False, auto_now_add=True)
+#     title = models.CharField(max_length=200, blank=True)
+
+#     image = CloudinaryField('stage')
+
+#     def __unicode__(self):
+#         try:
+#             public_id = self.image.public_id
+#         except AttributeError:
+#             public_id = ''
+#         return "Photo <%s:%s>" % (self.title, public_id)
