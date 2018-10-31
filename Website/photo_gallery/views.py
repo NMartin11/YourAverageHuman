@@ -1,37 +1,39 @@
-import cloudinary
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Photo 
-# from .models import CloudinaryPhoto
-import six
+from django.conf import settings
+from flickr_pony.storage import FlickrStorage
 
 
 def photo_list(request):
     queryset = Photo.objects.all()
-    context = {
-        "photos": queryset,
-    }
     return render(request, "photo.html", {'photos': queryset})
 
 
-# def filter_nones(d):
-#     return dict((k, v) for k, v in six.iteritems(d) if v is not None)
+def flickr_photos(request):
+    storage = FlickrStorage(**settings.FLICKR_STORAGE_OPTIONS)
+    user_id = request.GET.get('user_id', '') or storage.user_id
+    error = ''
 
-# def cloudinary_list(request):
-#     defaults = dict(format="jpg", height=150, width=150)
-#     defaults["class"] = "thumbnail inline"
+    if user_id:
+        try:
+            pictures = storage.listdir(user_id)
+            print("This is a list of pictures " + str(pictures))
+            pictures_urls = [] 
+            for pic in pictures[1]:
+                print('pic => ' + str(pic))
+                if len(pic) > 0:
+                    pictures_urls.append(pic)
 
-#     #The different transformations to persent
-#     samples = [
-#         dict(crop="fill", radius=10),
-#         dict(crop="scale"),
-#         dict(crop="fit", format="png"),
-#         dict(crop="thumb", gravity="face"),
-#         dict(format="png", angle=20, height=None, width=None, transformation=[
-#             dict(crop="fill", gravity="north", width=150, height=150, effect="sepia"),
-#         ]),
-#     ]
-#     samples = [filter_nones(dict(defaults, **sample)) for sample in samples]
-#     return render(request, 'photo.html', dict(cloudPhotos=CloudinaryPhoto.objects.all(), samples=samples))
+        except Exception as err:
+            pictures = []
+            error = 'Error: %s' % err.args[0]
+    else:
+        pictures = []
 
+    return render(request, 'photo.html', {
+        'pictures': pictures_urls,
+        'user_id': user_id,
+        'error': error
+        })
 

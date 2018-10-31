@@ -6,7 +6,8 @@ from . import views
 
 urlpatterns = [
     # url(r'', views.index, name='index'),
-    url(r'^$', views.photo_list, name='photo_list'),
+    # url(r'^$', views.photo_list, name='photo_list'),
+    url(r'^$', views.flickr_photos, name='photo_list'),
 
 ]
 

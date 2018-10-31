@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 from decouple import config
 
 
@@ -45,7 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'photo_gallery',
     'sortedm2m',
-    'cloudinary',
+    'flickr_pony',
 ]
 
 MIDDLEWARE = [
@@ -133,17 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 MEDIA_URL = '/media/'
 
-CLOUDINARY = [{
-    "CLOUD_NAME": config('cloud_name'),
-    "API_KEY": config('api_key'), 
-    "API_SECRET": config('api_secret'),
-    }]
-
-cloudinary.config(
-    CLOUD_NAME = config('cloud_name'),
-    API_KEY =  config('api_key'), 
-    API_SECRET = config('api_secret'),
-)
-
-CLOUDINARY_URL= config('cloudinary_url')
-# CLOUDINARY_URL="cloudinary://468238278693952:L8Y1BlVPVTZ7pmeaIab46z72ZpA@youraveragehuman"
+FLICKR_STORAGE_OPTIONS = {
+    'api_key': config('flickr_api_key'),
+    'user_id': config('flickr_personal_id'),
+}
