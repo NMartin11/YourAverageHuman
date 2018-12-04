@@ -4,16 +4,14 @@ from .models import Photo
 from django.conf import settings
 from django.views.decorators.cache import cache_page
 from flickr_pony.storage import FlickrStorage
+from django.core.paginator import Paginator
 
-
-def photo_list(request):
-    queryset = Photo.objects.all()
-    return render(request, "photo.html", {'photos': queryset})
 
 @cache_page(60*30)
 def flickr_photos(request):
     storage = FlickrStorage(**settings.FLICKR_STORAGE_OPTIONS)
     user_id = request.GET.get('user_id', '') or storage.user_id
+    paginator = ''
     error = ''
 
     if user_id:
@@ -25,6 +23,9 @@ def flickr_photos(request):
                 print('pic => ' + str(pic))
                 if len(pic) > 0:
                     pictures_urls.append(pic)
+            paginator = Paginator(pictures_urls, 3)
+            page = request.GET.get('page')
+            page_numbers = paginator.get_page(page)
 
         except Exception as err:
             pictures = []
@@ -35,6 +36,7 @@ def flickr_photos(request):
     return render(request, 'photo.html', {
         'pictures': pictures_urls,
         'user_id': user_id,
-        'error': error
+        'error': error,
+        'page_numbers': page_numbers 
         })
 
