@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 from decouple import config
+from django.conf.global_settings import TEMPLATES
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'photo_gallery',
     'sortedm2m',
     'flickr_pony',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 

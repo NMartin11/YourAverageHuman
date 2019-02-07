@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load el_pagination_tags %}
 {% block photo %}
+{% include page_template %}
 <main role="main">
     <div class="jumbotron">
         <div class="container">
@@ -8,37 +10,18 @@
         </div>
     </div>
 
-    {% comment %} <div class="container infinite-container">
-        <!-- Example row of columns -->
-        <center> {{ error }} </center>
-        <div class="row ">
-            {% for page in page_numbers %}
-                    <div class="col-md-4">
-                        <img class="img-fluid img-thumbnail infinite-item" src="{{ page }}" />
-                    </div>
-            {% endfor %}
-        </div>
-    </div> {% endcomment %}
+    <div class="row">
 
-    <div class="row infinite-container">
-        {% for page in page_numbers %}
-                <div class="col-md-4">
-                    <img class="img-fluid img-thumbnail infinite-item" src="{{ page }}" />
-                </div>
-        {% endfor %}
+    {% for entry in entries%}
+            <div class="col-md-4">
+                <img class="img-fluid img-thumbnail" src="{{ entry }}" />
+            </div>
+    {% endfor %}
+    {% show_more %}
+
     </div>
-
-    {% if page_numbers.has_next%}
-        <a class="infinite-more-link" href="?page={{ page_numbers.next_page_number }}">More</a>
-    {% endif %}
-
     <hr>
-</main>
 
-     <script>
-        var infinite = new Waypoint.Infinite({
-        element: $('.infinite-container')[0]
-        });
-    </script> 
+</main>
 {% endblock %}
 
