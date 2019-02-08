@@ -5,15 +5,13 @@ from django.conf import settings
 from django.views.decorators.cache import cache_page
 from flickr_pony.storage import FlickrStorage
 from el_pagination.decorators import page_template
+from el_pagination.views import AjaxListView
 
 
 @cache_page(60*30)
-@page_template('photo_gallery/photo.html')
-def flickr_photos(request, template='photo_gallery/photo.html'):
+def flickr_photos(request, template='photo.html', page_template='base.html'):
     storage = FlickrStorage(**settings.FLICKR_STORAGE_OPTIONS)
     user_id = request.GET.get('user_id', '') or storage.user_id
-    # paginator = ''
-    error = ''
 
     if user_id:
         try:
@@ -24,9 +22,6 @@ def flickr_photos(request, template='photo_gallery/photo.html'):
                 print('pic => ' + str(pic))
                 if len(pic) > 0:
                     pictures_urls.append(pic)
-            # paginator = Paginator(pictures_urls, 3)
-            # page = request.GET.get('page')
-            # page_numbers = paginator.get_page(page)
 
         except Exception as err:
             pictures = []
@@ -35,40 +30,11 @@ def flickr_photos(request, template='photo_gallery/photo.html'):
         pictures = []
 
     context = {
-        'entries' : pictures_urls,
+        'entry_list': pictures_urls,
+        'page_template': page_template,
     }
 
-    return render(request, 'photo.html',context)
+    if request.is_ajax():
+        template = page_template
 
-
-# @page_template('photo_gallery/photo.html')
-# def flickr_photos(request, template='photo_gallery/photo.html', extra_context=None):
-#     storage = FlickrStorage(**settings.FLICKR_STORAGE_OPTIONS)
-#     user_id = request.GET.get('user_id', '') or storage.user_id
-#     # paginator = ''
-#     error = ''
-
-#     if user_id:
-#         try:
-#             pictures = storage.listdir(user_id, size='L', original=False)
-#             print("This is a list of pictures " + str(pictures))
-#             pictures_urls = [] 
-#             for pic in pictures[1]:
-#                 print('pic => ' + str(pic))
-#                 if len(pic) > 0:
-#                     pictures_urls.append(pic)
-#             # paginator = Paginator(pictures_urls, 3)
-#             # page = request.GET.get('page')
-#             # page_numbers = paginator.get_page(page)
-
-#         except Exception as err:
-#             pictures = []
-#             error = 'Error: %s' % err.args[0]
-#     else:
-#         pictures = []
-
-#     return render(request, 'photo.html', {
-#         'entries': pictures_urls,
-#         'user_id': user_id,
-#         'error': error,
-#         })
+    return render(request, template, context)

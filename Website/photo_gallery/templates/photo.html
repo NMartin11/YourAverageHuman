@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load el_pagination_tags %}
 {% block photo %}
-{% include page_template %}
+
 <main role="main">
     <div class="jumbotron">
         <div class="container">
@@ -11,17 +11,16 @@
     </div>
 
     <div class="row">
-
-    {% for entry in entries%}
+    {% for entry in entry_list%}
             <div class="col-md-4">
                 <img class="img-fluid img-thumbnail" src="{{ entry }}" />
             </div>
     {% endfor %}
-    {% show_more %}
-
     </div>
+    {% comment %} {% show_more '<button type="button" class="btn">Load More Photos</button>' %} {% endcomment %}
     <hr>
 
 </main>
 {% endblock %}
+
 

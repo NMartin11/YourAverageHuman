@@ -9,9 +9,6 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="{{ STATIC_URL }}el-pagination/js/el-pagination.js"></script>
-    <script>$.endlessPaginate({paginateOnScroll: true});</script>
 </head>
 <body>
 
@@ -43,13 +40,19 @@
 
     <div class="content container">
             <div>
-                {% block photo %}
-                {% endblock %}
+                {% include page_template %}
             </div>
     </div>
 
 
 </body>
+ {% comment %} Very imporant not to forget to add the necessary JS {% endcomment %}
+{% block extra_js %}
+  # Adding the el-pagination.js file is different than as shown in the docs
+  <script type="text/javascript" src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+  <script>$.endlessPaginate();</script>
+{% endblock %}
+
 <script>
     {% comment %} window.onload = function() {
         if (window.jQuery) {  
