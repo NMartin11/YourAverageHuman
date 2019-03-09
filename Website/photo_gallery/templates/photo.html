@@ -1,16 +1,9 @@
-{% extends 'base.html' %}
 {% load el_pagination_tags %}
 {% block photo %}
 
-<main role="main">
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Photo Gallery</h1>
-            <p>I recently took an interest in photography so this gallery is to share some of my favorite pictures that I have taken. If you like them and want to use any just contact me and we will work something out.</p>
-        </div>
-    </div>
 
     <div class="row">
+    {% lazy_paginate entry_list %}
     {% for entry in entry_list%}
             <div class="col-md-4">
                 <img class="img-fluid img-thumbnail" src="{{ entry }}" />
@@ -18,9 +11,7 @@
     {% endfor %}
     </div>
     {% comment %} {% show_more '<button type="button" class="btn">Load More Photos</button>' %} {% endcomment %}
-    <hr>
 
-</main>
 {% endblock %}
 
 

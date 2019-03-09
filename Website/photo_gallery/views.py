@@ -9,7 +9,7 @@ from el_pagination.views import AjaxListView
 
 
 @cache_page(60*30)
-def flickr_photos(request, template='photo.html', page_template='base.html'):
+def flickr_photos(request, template='base.html', page_template='photo.html'):
     storage = FlickrStorage(**settings.FLICKR_STORAGE_OPTIONS)
     user_id = request.GET.get('user_id', '') or storage.user_id
 

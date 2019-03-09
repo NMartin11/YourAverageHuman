@@ -9,6 +9,10 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -38,19 +42,33 @@
 
 <!-- End of Nav Bar-->
 
-    <div class="content container">
-            <div>
-                {% include page_template %}
-            </div>
+<main role="main">
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Photo Gallery</h1>
+            <p>I recently took an interest in photography so this gallery is to share some
+             of my favorite pictures that I have taken. If you like them and want to use any
+              just contact me and we will work something out.</p>
+        </div>
     </div>
 
+</main>
+
+<div class="content container">
+        <div>
+            {% block photo %}
+              {% include page_template %}
+            {% endblock %}
+        </div>
+</div>
 
 </body>
  {% comment %} Very imporant not to forget to add the necessary JS {% endcomment %}
 {% block extra_js %}
-  # Adding the el-pagination.js file is different than as shown in the docs
   <script type="text/javascript" src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
-  <script>$.endlessPaginate();</script>
+  <script>$.endlessPaginate({
+    paginateOnScroll: true,
+    paginateOnScrollMargin: 20});</script>
 {% endblock %}
 
 <script>
@@ -62,6 +80,6 @@
             // jQuery is not loaded
             alert("Doesn't Work");
         }
-    } {% endcomment %}
+    }  {% endcomment %}
 </script>
 </html>
