@@ -5,12 +5,12 @@
     <div class="row">
     {% lazy_paginate entry_list %}
     {% for entry in entry_list%}
-            <div class="col-md-4">
-                <img class="img-fluid img-thumbnail" src="{{ entry }}" />
+            <div class="col-md-4 ">
+                <img class="img-fluid mx-auto d-block img-thumbnail" src="{{ entry }}" />
             </div>
     {% endfor %}
     </div>
-    {% comment %} {% show_more '<button type="button" class="btn">Load More Photos</button>' %} {% endcomment %}
+    {% show_more '<button type="button" class="btn">Loading ...</button>' %}
 
 {% endblock %}
 
