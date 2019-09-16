@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'photo_gallery',
+    'resume',
     'sortedm2m',
     'flickr_pony',
     'el_pagination',
