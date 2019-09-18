@@ -1,86 +1,35 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>YourAverageHuman</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous">
-    </script>
-</head>
-<body>
+{% extends "global/navbar.html" %}
 
-<!-- Global top nav bar -->
- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">YAH</a>
-    </div>
+{% block base_content %}
+  <main role="main">
+      <div class="jumbotron">
+          <div class="container">
+              <h1 class="display-3">Photo Gallery</h1>
+              <p>I recently took an interest in photography so this gallery is to share some
+              of my favorite pictures that I have taken. If you like them and want to use any
+                just contact me and we will work something out.</p>
+          </div>
+      </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  </main>
 
-      <ul class="nav navbar-nav text-nowrap flex-row mx-md-auto order-1 order-md-2">
-        <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
-        <li class="nav-item active">
-            <a class="nav-link"href="{% url 'photo_gallery:photo_list' %}">Photos
-                <span class="sr-only">(current)</span>
-            </a>
-        </li>
-      </ul>
+  <div class="content container">
+          <div>
+              {% block photo%}
+                {% include page_template %}
+              {% endblock %}
+          </div>
+  </div>
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<!-- End of Nav Bar-->
-
-<main role="main">
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Photo Gallery</h1>
-            <p>I recently took an interest in photography so this gallery is to share some
-             of my favorite pictures that I have taken. If you like them and want to use any
-              just contact me and we will work something out.</p>
-        </div>
-    </div>
-
-</main>
-
-<div class="content container">
-        <div>
-            {% block photo %}
-              {% include page_template %}
-            {% endblock %}
-        </div>
-</div>
-
-</body>
- {% comment %} Very imporant not to forget to add the necessary JS {% endcomment %}
-{% block extra_js %}
-  <script type="text/javascript" src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
-  <script>$.endlessPaginate({
-    paginateOnScroll: true,
-    paginateOnScrollMargin: 20});</script>
+  <script>
+      window.onload = function() {
+          if (window.jQuery) {  
+              // jQuery is loaded  
+              alert("Yeah!");
+          } else {
+              // jQuery is not loaded
+              alert("Doesn't Work");
+          }
+      }
+  </script>
 {% endblock %}
-
-<script>
-    window.onload = function() {
-        if (window.jQuery) {  
-            // jQuery is loaded  
-            alert("Yeah!");
-        } else {
-            // jQuery is not loaded
-            alert("Doesn't Work");
-        }
-    }
-</script>
-</html>
