@@ -27,7 +27,8 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'blog/', include('blog.urls')),
-    url(r'^photo_gallery/', include('photo_gallery.urls', namespace='photo_gallery'))
+    url(r'^photo_gallery/', include('photo_gallery.urls', namespace='photo_gallery')),
+    url(r'^resume/', include('resume.urls', namespace='resume'))
 ]
 
 if settings.DEBUG:

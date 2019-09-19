@@ -6,31 +6,16 @@ from django.views.decorators.cache import cache_page
 from flickr_pony.storage import FlickrStorage
 from el_pagination.decorators import page_template
 from el_pagination.views import AjaxListView
+import photo_gallery.PhotoGalleryCustomClasses.flickr_api as FlickApi
 
 
 @cache_page(60*30)
 def flickr_photos(request, template='base.html', page_template='photo.html'):
-    storage = FlickrStorage(**settings.FLICKR_STORAGE_OPTIONS)
-    user_id = request.GET.get('user_id', '') or storage.user_id
-
-    if user_id:
-        try:
-            pictures = storage.listdir(user_id, size='L', original=False)
-            print("This is a list of pictures " + str(pictures))
-            pictures_urls = [] 
-            for pic in pictures[1]:
-                print('pic => ' + str(pic))
-                if len(pic) > 0:
-                    pictures_urls.append(pic)
-
-        except Exception as err:
-            pictures = []
-            error = 'Error: %s' % err.args[0]
-    else:
-        pictures = []
+    flickr = FlickApi.FlickrAPI(request)
+    flickr_photos = flickr.get_pictures_as_list('L', False)
 
     context = {
-        'entry_list': pictures_urls,
+        'entry_list': flickr_photos,
         'page_template': page_template,
     }
 
