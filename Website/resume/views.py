@@ -2,4 +2,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def resume(request):
-    return render(request, 'resume/base.html')
+    return render(request, 'resume/resume.html')
