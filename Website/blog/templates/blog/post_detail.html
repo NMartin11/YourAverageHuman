@@ -1,13 +1,22 @@
-{% extends 'blog/base.html' %}
+{% extends "blog/base.html" %}
+{% block content%}
 
-{% block post %}
-    <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
+<main role="main">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-lg-10 mx-auto">
+                <h1>{{ post.title }}</h1>
+                <p>{{ post.text|linebreaksbr }}</p>
             </div>
-        {% endif %}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    </div>
+</main>
+    <!-- /.container -->
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="post">
+        </div>
     </div>
 {% endblock %}

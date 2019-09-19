@@ -1,0 +1,35 @@
+{% extends "global/navbar.html" %}
+
+{% block base_content %}
+  <main role="main">
+      <div class="jumbotron">
+          <div class="container">
+              <h1 class="display-3">Photo Gallery</h1>
+              <p>I recently took an interest in photography so this gallery is to share some
+              of my favorite pictures that I have taken. If you like them and want to use any
+                just contact me and we will work something out.</p>
+          </div>
+      </div>
+
+  </main>
+
+  <div class="content container">
+          <div>
+              {% block photo%}
+                {% include page_template %}
+              {% endblock %}
+          </div>
+  </div>
+
+  <script>
+      window.onload = function() {
+          if (window.jQuery) {  
+              // jQuery is loaded  
+              alert("Yeah!");
+          } else {
+              // jQuery is not loaded
+              alert("Doesn't Work");
+          }
+      }
+  </script>
+{% endblock %}

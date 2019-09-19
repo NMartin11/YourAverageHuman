@@ -1,15 +1,35 @@
 {% extends 'blog/base.html' %}
 
-{% block post %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                <p>published: {{post.published_date}}</p>
+{% block content %}
+<main role="main">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="display-3">Your Average Human</h1>
+                <p>
+                    This is my on going web programming project as well as my personal blog and photo. Please bare with me as a lot of things will look out of place
+                as I progress my knowledge with web technologies and my understanding on how to implement them in a way that I find useful and aesthetically pleasing.
+                Thanks for stopping by and if you have any suggestions don't hesitate to contact me.
+                </p>
             </div>
-
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a> </h1>
-            <p>{{ post.text | linebreaksbr }}</p>
         </div>
-    {% endfor %}
+    </div>
+    <!-- /.container -->
+
+
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h3><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a> </h3>
+                <p>{{ post.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+        <hr>
+</main>
 
 {% endblock %}
