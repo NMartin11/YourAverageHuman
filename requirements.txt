@@ -4,7 +4,7 @@ beautifulsoup4==4.7.1
 certifi==2019.3.9
 chardet==3.0.4
 colorama==0.4.1
-Django==2.2.6
+Django==2.2.10
 django-el-pagination==3.2.4
 django-livereload-server==0.3.2
 django-sortedm2m==1.5.0
